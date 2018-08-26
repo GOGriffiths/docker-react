@@ -1,0 +1,14 @@
+# we need a copy of docker running
+# build out dockerfile.dev
+# tell travis how to rn test suite
+#  tell travis how to deploy to aws
+
+sudo: required # need root permissions
+services:
+  - docker
+
+before_install:
+  - docker build -t gaowgr/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run gaowgr/docker-react npm run test -- --coverage
